@@ -12,6 +12,13 @@
  * Register block styles.
  */
 
+if ( ! function_exists( 'my_custom_rest_corss' ) ) :
+    function my_custom_rest_cors() {
+	header( 'Access-Control-Allow-Origin: *' );
+    }
+    add_action( 'rest_api_init', 'my_custom_rest_cors', 15 );
+endif;
+
 if ( ! function_exists( 'twentytwentyfour_block_styles' ) ) :
 	/**
 	 * Register custom block styles
@@ -194,7 +201,7 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 	function twentytwentyfour_pattern_categories() {
 
 		register_block_pattern_category(
-			'page',
+			'twentytwentyfour_page',
 			array(
 				'label'       => _x( 'Pages', 'Block pattern category', 'twentytwentyfour' ),
 				'description' => __( 'A collection of full page layouts.', 'twentytwentyfour' ),
@@ -204,3 +211,4 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+

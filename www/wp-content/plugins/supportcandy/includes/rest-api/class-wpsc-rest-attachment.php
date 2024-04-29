@@ -121,11 +121,13 @@ if ( ! class_exists( 'WPSC_REST_Attachment' ) ) :
 				$data = array(
 					'id'   => intval( $attachment->id ),
 					'name' => $attachment->name,
+					'file' => json_encode($file),
+					'params' => json_encode($file_parameters),
 				);
 				return new WP_REST_Response( $data, 200 );
 			}
 
-			wp_send_json_error( 'Something went wrong, file not saved!', 500 );
+			wp_send_json_error( 'Something went wrong, file not saved! Tmp Name: ' . json_encode($file) . ' ' . json_encode($file_parameters), 500 );
 		}
 
 		/**
